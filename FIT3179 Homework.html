@@ -60,7 +60,11 @@
           ],
           "mark": {"type": "geoshape", "stroke": "white"},
           "encoding": {
-            "color": {"field": "2019Score", "type": "quantitative"},
+            "color": {
+              "field": "2019Score",
+              "type": "quantitative",
+              "title": "Index Score"
+            },
             "tooltip": [
               {
                 "field": "properties.NAME",
