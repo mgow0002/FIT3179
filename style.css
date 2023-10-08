@@ -1,0 +1,70 @@
+.mainHeading
+{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: bold;
+    font-size: 63px;
+    text-align: center;
+}
+
+body
+{
+    background-color: bisque;
+}
+
+.page
+{
+    width: 850px;
+    background-color: white;
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
+}
+
+.global_economy_magazine
+{
+    width: 400px;
+    height: 300px;
+}
+
+.inspiration_heading
+{
+font-family: 'Montserrat', sans-serif;
+font-size: 40px;
+}
+
+.inspiration_text
+{
+    font-family: 'Alegreya', serif;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.map_container
+{
+    padding-left: 100px;
+    width: 100%;
+}
+
+.bubble_container {
+    padding-left: 100px;
+    width: 100%;
+}
+
+.pure-g 
+{
+    margin-bottom: 40px;
+}
+
+.Topic
+{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.TopicExplanation
+{
+    text-align: center;
+    font-family: 'Alegreya', serif;
+    font-size: 18px;
+}
