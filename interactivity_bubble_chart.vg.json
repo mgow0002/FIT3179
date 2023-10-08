@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "economic_freedom_index2019.csv"
+  },
+  "width": 500,
+  "height": 400,
+  "title": "Business and Labor Freedom in 2019",
+  "params": [
+    {
+      "name": "Region_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Asia-Pacific",
+          "Middle East and North Africa",
+          "Sub-Saharan Africa",
+          "Europe",
+          "Americas"
+        ],
+        "labels": [
+          "Show All",
+          "Asia-Pacific",
+          "Middle East and North Africa",
+          "Sub-Saharan Africa",
+          "Europe",
+          "Americas"
+        ],
+        "name": "Region Selection"
+      }
+    },
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "name": "Minimum Population: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Region_Selection == null || datum.Region == Region_Selection"
+    },
+    { "filter": "datum.Population > Population_Above" }
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "LaborFreedom",
+      "type": "quantitative",
+      "title": "Labor Freedom (%)",
+      "axis": { "tickCount": 4 }
+    },
+    "y": {
+      "field": "BusinessFreedom",
+      "type": "quantitative",
+      "title": "Business Freedom (%)",
+      "axis": { "tickCount": 4 }
+    },
+    "size": {
+      "field": "Population",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+        "range": [10, 50, 150, 200, 300, 400]
+      }
+    },
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Asia-Pacific",
+          "Middle East and North Africa",
+          "Sub-Saharan Africa",
+          "Europe",
+          "Americas"
+        ],
+        "range": ["#c51b8a", "#fec44f", "#d95f0e", "#31a354", "#8856a7"]
+      }
+    },
+    "tooltip": [
+      { "field": "Country", "type": "nominal" },
+      { "field": "Region", "type": "nominal" },
+      { "field": "Population", "type": "quantitative", "format": "," },
+      { "field": "BusinessFreedom", "type": "quantitative", "format": "," },
+      { "field": "LaborFreedom", "type": "quantitative", "format": "," }
+    ]
+  }
+}
