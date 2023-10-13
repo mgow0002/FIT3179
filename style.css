@@ -1,53 +1,102 @@
 .mainHeading
 {
-    text-align: center;
+    text-align: left;
     font-family: 'Playfair Display', serif;
     font-style: bold;
-    font-size: 63px;
-    text-align: center;
+    font-size: 50px;
 }
 
 body
 {
-    background-color: bisque;
+    background-color: #3C6E71;
 }
 
 .page
 {
-    width: 850px;
-    background-color: white;
+    width: 1000px;
+    background-color: #FFFFFF;
     margin: auto;
     padding: 50px;
-    padding-top: 35px;
+     padding-top: 35px;
+}
+
+.main_overview
+{
+    height: 400px;
+    width: 100%;
+    opacity: 0.5;
+}
+
+#picture1
+{
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#slogan
+{
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-style: "bold";
+    color: #000000;
+}
+
+#slogantext
+{
+    font-family: 'Arvo', serif;
+    font-size: 18px;
+    font-style: normal;
+    text-align: center;
+    color: #000000;
 }
 
 .global_economy_magazine
 {
-    width: 400px;
+    width: 450px;
     height: 300px;
 }
 
 .inspiration_heading
 {
-font-family: 'Montserrat', sans-serif;
-font-size: 40px;
+font-family: 'Playfair Display', serif;
+font-size: 20px;
+}
+
+hr.rounded {
+    border-top: 8px solid #272932;
+    border-radius: 5px;
 }
 
 .inspiration_text
 {
-    font-family: 'Alegreya', serif;
+    font-family: 'Arvo', serif;
     font-size: 18px;
+    font-style: normal;
+    text-align: justify;
+    margin-top: 50px;
+}
+
+.inspirator
+{
     font-style: italic;
 }
 
 .map_container
 {
-    padding-left: 100px;
-    width: 100%;
+    padding-left: 200px;
+    width: 100px;
 }
 
 .bubble_container {
-    padding-left: 100px;
+    padding-left: 200px;
     width: 100%;
 }
 
@@ -58,13 +107,13 @@ font-size: 40px;
 
 .Topic
 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arvo', serif;
     text-align: center;
 }
 
 .TopicExplanation
 {
     text-align: center;
-    font-family: 'Alegreya', serif;
-    font-size: 18px;
+    font-family: 'Arvo', serif;
+    font-size: 17px;
 }
