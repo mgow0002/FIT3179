@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--This is a way to ensure the HTML is valid and compatible for all devices-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+
+    <!--This is a title for the page bar-->
+    <title>Global Economic 2019 Around World</title>
+
+    <!--Import Vega and Vega Lite-->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!--This is to import pure.css-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+      integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
+      crossorigin="anonymous"
+    />
+
+    <!--This is a font link from Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--This is CSS File-->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <!--This is a body page-->
+  <body>
+    <div class="page">
+      <!--pure grid  for the title of the page-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h1 class="mainHeading">GLOBAL ECONOMIC 2019</h1>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <!-- pure grid-->
+      <div class="pure-g">
+        <div class="pure-u-1-1" id="picture1">
+          <img
+            class="main_overview"
+            src="https://mgow0002.github.io/FIT3179/jose-martin-ramirez-carrasco-45sjAjSjArQ-unsplash%20(1).jpg"
+            alt=""
+          />
+          <div class="centered">
+            <h2 id="slogan">"WANT to MAKE CHANGES of 2019?"</h2>
+            <p id="slogantext">
+              Dive deep into the concept of the past <br />
+              The success of the future will come true
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--The first division for the introduction-->
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <img
+            class="global_economy_magazine"
+            src="https://mgow0002.github.io/FIT3179/global_economy_magazine.jpg"
+            alt="Picture of global_economy_magazine"
+          />
+        </div>
+        <div class="pure-u-1-2">
+          <div class="inspiration_heading">
+            <h2>Inspiration</h2>
+            <hr class="rounded" />
+            <p class="inspiration_text">
+              "A successful economic development strategy must focus on
+              improving the skills of the area's workforce, reducing the cost of
+              doing business and making available the resources business needs
+              to compete and thrive in today's global economy" <br />
+              <br />
+              "Rod Blagojevich"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- pure grid 3 for the map-->
+      <div class="pure-g">
+        <!--the whole column visualizes the map-->
+        <div class="pure-u-4">
+          <div class="pure-u-2-4">
+            <div id="vis1" class="map_container"></div>
+          </div>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <div id="vis1" />
+      <script>
+        const map = {
+          $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+          title: "Global Economic Freedom Index In 2019",
+          width: 600,
+          height: 400,
+          projection: { type: "equalEarth" },
+          layer: [
+            {
+              data: {
+                url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/ne_110m_wgs84_bounding_box.json",
+                format: {
+                  type: "topojson",
+                  feature: "ne_110m_wgs84_bounding_box",
+                },
+              },
+              mark: { type: "geoshape", fill: "lightblue", stroke: null },
+            },
+            {
+              data: {
+                url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/ne_110m_graticules_30.json",
+                format: { type: "topojson", feature: "ne_110m_graticules_30" },
+              },
+              mark: { type: "geoshape", fill: null, stroke: "white" },
+            },
+            {
+              data: {
+                url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/ne_110m.json",
+                format: {
+                  type: "topojson",
+                  feature: "ne_110m_admin_0_countries",
+                },
+              },
+              layer: [
+                {
+                  transform: [
+                    {
+                      calculate:
+                        "'Data is not available in' + datum.properties.NAME",
+                      as: "note",
+                    },
+                  ],
+                  mark: {
+                    type: "geoshape",
+                    fill: "lightgray",
+                    stroke: "white",
+                  },
+                  encoding: { tooltip: { field: "note" } },
+                },
+                {
+                  transform: [
+                    {
+                      lookup: "properties.NAME",
+                      from: {
+                        data: {
+                          url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/economic_freedom_index2019.csv",
+                        },
+                        key: "Country",
+                        fields: ["2019Score"],
+                      },
+                    },
+                  ],
+                  mark: { type: "geoshape", stroke: "white" },
+                  encoding: {
+                    color: {
+                      field: "2019Score",
+                      type: "quantitative",
+                      title: "Index Score",
+                    },
+                    tooltip: [
+                      {
+                        field: "properties.NAME",
+                        type: "nominal",
+                        title: "Country",
+                      },
+                      {
+                        field: "2019Score",
+                        type: "quantitative",
+                        title: "Index Score",
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+          config: {},
+        };
+        vegaEmbed("#vis1", map, { mode: "vega-lite" })
+          .then(console.log)
+          .catch(console.warn);
+      </script>
+
+      <!--pure grid for explaining the topic-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">Economic Freedom Index</h3>
+          <p class="TopicExplanation">
+            The map shows the index scores of each country around the world. The
+            index scores were summarized with different metrics in the year of
+            2019 with the purpose of knowing which country shows the best
+            economy and the worst economy, As people would like to stay in
+            certain country due to the awareness of the economic activity, it
+            would be important for them to see the economic rate in general to
+            ensure they can make good choices after taking the brief view of
+            this visualization into account
+          </p>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <!--pure grid for visualizing the bubble chart and the text-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis2" class="bubble_container"></div>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <div id="vis2" />
+      <script>
+        const bubble = {
+          $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+          data: {
+            url: "https://mgow0002.github.io/FIT3179/economic_freedom_index2019.csv",
+          },
+          width: 500,
+          height: 400,
+          title: "Business and Labor Freedom in 2019",
+          params: [
+            {
+              name: "Region_Selection",
+              bind: {
+                input: "select",
+                options: [
+                  null,
+                  "Asia-Pacific",
+                  "Middle East and North Africa",
+                  "Sub-Saharan Africa",
+                  "Europe",
+                  "Americas",
+                ],
+                labels: [
+                  "Show All",
+                  "Asia-Pacific",
+                  "Middle East and North Africa",
+                  "Sub-Saharan Africa",
+                  "Europe",
+                  "Americas",
+                ],
+                name: "Region Selection",
+              },
+            },
+            {
+              name: "Population_Above",
+              value: 0,
+              bind: {
+                input: "range",
+                min: 0,
+                max: 100000000,
+                name: "Minimum Population: ",
+              },
+            },
+          ],
+          transform: [
+            {
+              filter:
+                "Region_Selection == null || datum.Region == Region_Selection",
+            },
+            { filter: "datum.Population > Population_Above" },
+          ],
+          mark: "circle",
+          encoding: {
+            x: {
+              field: "LaborFreedom",
+              type: "quantitative",
+              title: "Labor Freedom (%)",
+              axis: { tickCount: 4 },
+            },
+            y: {
+              field: "BusinessFreedom",
+              type: "quantitative",
+              title: "Business Freedom (%)",
+              axis: { tickCount: 4 },
+            },
+            size: {
+              field: "Population",
+              type: "quantitative",
+              scale: {
+                type: "threshold",
+                domain: [1000000, 10000000, 50000000, 100000000, 500000000],
+                range: [10, 50, 150, 200, 300, 400],
+              },
+            },
+            color: {
+              field: "Region",
+              type: "nominal",
+              scale: {
+                domain: [
+                  "Asia-Pacific",
+                  "Middle East and North Africa",
+                  "Sub-Saharan Africa",
+                  "Europe",
+                  "Americas",
+                ],
+                range: ["#c51b8a", "#fec44f", "#d95f0e", "#31a354", "#8856a7"],
+              },
+            },
+            tooltip: [
+              { field: "Country", type: "nominal" },
+              { field: "Region", type: "nominal" },
+              { field: "Population", type: "quantitative", format: "," },
+              { field: "BusinessFreedom", type: "quantitative", format: "," },
+              { field: "LaborFreedom", type: "quantitative", format: "," },
+            ],
+          },
+        };
+
+        vegaEmbed("#vis2", bubble, { mode: "vega-lite" })
+          .then(console.log)
+          .catch(console.warn);
+      </script>
+
+      <!--pure grid for explaining the topic-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">Business and Labor Freedom</h3>
+          <p class="TopicExplanation">
+            Business and Labor Freedom are two main characters that
+            businessperson always looks at before expanding the business into
+            large market accross multiple countries. Assessing how better a
+            country is with respect to the business and the labor market, the
+            solution is to view the interactive bubble chart as the main
+            instrument. As they choose a certain region, they can look at the
+            tooltip and decide the best country with better rate of labor and
+            business.
+          </p>
+        </div>
+      </div>
+      <!--end pure grid-->
+    </div>
+
+    <script type="text/javascript">
+      var specVis1 = "./map.vg.json";
+      var specVis2 = "./interactivity_bubble_chart.vg.json";
+      vegaEmbed("#vis1", specVis1, { actions: false });
+      vegaEmbed("#vis2", specVis2, { actions: false })
+        .then(function (result) {
+          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        })
+        .catch(console.error);
+    </script>
+  </body>
+</html>
