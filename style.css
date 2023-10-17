@@ -1,9 +1,34 @@
 .mainHeading
 {
-    text-align: left;
+    text-align: center;
     font-family: 'Playfair Display', serif;
     font-style: bold;
     font-size: 50px;
+}
+
+html
+{
+    scroll-behavior: smooth;
+}
+
+.nav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+}
+
+.nav a:hover {
+    background-color: #ddd;
+    color: black;
 }
 
 body
@@ -18,6 +43,26 @@ body
     margin: auto;
     padding: 50px;
      padding-top: 35px;
+}
+
+.asian_pacific
+{
+    color: #c51b8a;
+}
+
+.sub_saharan_africa
+{
+    color:#d95f0e;
+}
+
+.poor
+{
+    color: red;
+}
+
+.good
+{
+    color:green;
 }
 
 .main_overview
@@ -97,6 +142,12 @@ hr.rounded {
 
 .bubble_container {
     padding-left: 200px;
+    width: 100%;
+}
+
+.line_charts_container
+{
+    padding-left: 140px;
     width: 100%;
 }
 

@@ -1,11 +1,11 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "data": {
-    "url": "economic_freedom_index2019.csv"
-  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 500,
-  "height": 400,
+  "height": 500,
   "title": "Business and Labor Freedom in 2019",
+  "data": {
+    "url": "https://mgow0002.github.io/FIT3179/economic_freedom_index2019.csv"
+  },
   "params": [
     {
       "name": "Region_Selection",
@@ -47,7 +47,6 @@
     },
     { "filter": "datum.Population > Population_Above" }
   ],
-  "mark": "circle",
   "encoding": {
     "x": {
       "field": "LaborFreedom",
@@ -60,36 +59,80 @@
       "type": "quantitative",
       "title": "Business Freedom (%)",
       "axis": { "tickCount": 4 }
-    },
-    "size": {
-      "field": "Population",
-      "type": "quantitative",
-      "scale": {
-        "type": "threshold",
-        "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
-        "range": [10, 50, 150, 200, 300, 400]
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [10, 50, 150, 200, 300, 400]
+          }
+        },
+        "color": {
+          "field": "Region",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Asia-Pacific",
+              "Middle East and North Africa",
+              "Sub-Saharan Africa",
+              "Europe",
+              "Americas"
+            ],
+            "range": ["#c51b8a", "#fec44f", "#d95f0e", "#31a354", "#8856a7"]
+          }
+        },
+        "tooltip": [
+          { "field": "Country", "type": "nominal" },
+          { "field": "Region", "type": "nominal" },
+          { "field": "Population", "type": "quantitative", "format": "," },
+          {
+            "field": "BusinessFreedom",
+            "type": "quantitative",
+            "format": ","
+          },
+          { "field": "LaborFreedom", "type": "quantitative", "format": "," }
+        ]
       }
     },
-    "color": {
-      "field": "Region",
-      "type": "nominal",
-      "scale": {
-        "domain": [
-          "Asia-Pacific",
-          "Middle East and North Africa",
-          "Sub-Saharan Africa",
-          "Europe",
-          "Americas"
-        ],
-        "range": ["#c51b8a", "#fec44f", "#d95f0e", "#31a354", "#8856a7"]
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -18,
+        "dy": 14,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": { "field": "Country", "type": "nominal" },
+        "color": { "value": "black" },
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'North Korea' || datum['Country'] == 'Hong Kong' ",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          { "field": "Country", "type": "nominal" },
+          { "field": "Region", "type": "nominal" },
+          { "field": "Population", "type": "quantitative", "format": "," },
+          {
+            "field": "BusinessFreedom",
+            "type": "quantitative",
+            "format": ","
+          },
+          { "field": "LaborFreedom", "type": "quantitative", "format": "," }
+        ]
       }
-    },
-    "tooltip": [
-      { "field": "Country", "type": "nominal" },
-      { "field": "Region", "type": "nominal" },
-      { "field": "Population", "type": "quantitative", "format": "," },
-      { "field": "BusinessFreedom", "type": "quantitative", "format": "," },
-      { "field": "LaborFreedom", "type": "quantitative", "format": "," }
-    ]
-  }
+    }
+  ]
 }

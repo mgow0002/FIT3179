@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/mgow0002/FIT3179/main/gdp_and_unemp.csv"
+  },
+  "hconcat": [
+    {
+      "title": "GDP Rate",
+      "width": 300,
+      "height": 250,
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "GDP",
+              "as": "mean_gdp"
+            }
+          ],
+          "groupby": ["Year"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "mean_gdp",
+          "type": "quantitative",
+          "title": "Average GDP Per Year"
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "temporal",
+            "title": "Year",
+            "timeUnit": "year"
+          },
+          {
+            "field": "mean_gdp",
+            "type": "quantitative",
+            "title": "Average GDP"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "point": {
+              "filled": false,
+              "fill": "white"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": -8,
+            "baseline": "middle",
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Unemployment Rate",
+      "width": 300,
+      "height": 250,
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "mean",
+              "field": "Unemployment",
+              "as": "mean_unemployment"
+            }
+          ],
+          "groupby": ["Year"]
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": false,
+          "fill": "white"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "mean_unemployment",
+          "type": "quantitative",
+          "title": "Average Unemployment Per Year"
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "temporal",
+            "title": "Year",
+            "timeUnit": "year"
+          },
+          {
+            "field": "mean_unemployment",
+            "type": "quantitative",
+            "title": "Average Unemployment"
+          }
+        ]
+      }
+    }
+  ]
+}
