@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--This is a way to ensure the HTML is valid and compatible for all devices-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+
+    <!--This is a title for the page bar-->
+    <title>Global Economic 2019 Around World</title>
+
+    <!--Import Vega and Vega Lite-->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!--This is to import pure.css-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+      integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
+      crossorigin="anonymous"
+    />
+
+    <!--This is a font link from Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--This is CSS File-->
+    <link
+      rel="stylesheet"
+      href="https://mgow0002.github.io/FIT3179/style.css"
+    />
+  </head>
+
+  <!--This is a body page-->
+  <body>
+    <div class="page">
+      <!--grid for navigation bar-->
+      <div class="nav">
+        <a href="#section1"> Overview</a>
+        <a href="#section2"> Economic Index </a>
+        <a href="#section3"> Business and Labor Freedom </a>
+        <a href="#section4"> GDP Vs Unemployment Trend </a>
+        <a href="#section5"> Conclusion</a>
+      </div>
+      <!--pure grid  for the title of the page-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h1 class="mainHeading">GLOBAL ECONOMIC 2019</h1>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <!-- pure grid-->
+      <div class="pure-g">
+        <div class="pure-u-1-1" id="picture1">
+          <img
+            class="main_overview"
+            src="https://mgow0002.github.io/FIT3179/jose-martin-ramirez-carrasco-45sjAjSjArQ-unsplash%20(1).jpg"
+            alt=""
+          />
+          <div class="centered">
+            <h2 id="slogan">"WANT to MAKE CHANGES of 2019?"</h2>
+            <p id="slogantext">
+              Dive deep into the concept of the past <br />
+              The success of the future will come true
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="section1" class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">Overview</h3>
+          <p class="TopicExplanation">
+            The Global Economic Index 2019 is a whole picture of the world
+            derived from key economic data that covers around 186 countries in
+            total. This topic is created for the reader who is passionate about
+            learning the economy, analysing the current situation of the world,
+            willing to support the hypothesis, and/or enjoyment of understanding
+            the world. As the data covers ranging from property rights to
+            financial freedom, there are some attributes specifically accessed
+            for the case study. As I am a passionate business learner who wants
+            to see the rough picture of the world, I would love to display this
+            topic in the form of visualizations whose metrics will be used for
+            the measurement.
+          </p>
+        </div>
+      </div>
+
+      <!--The first division for the introduction-->
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <img
+            class="global_economy_magazine"
+            src="https://mgow0002.github.io/FIT3179/global_economy_magazine.jpg"
+            alt="Picture of global_economy_magazine"
+          />
+        </div>
+        <div class="pure-u-1-2">
+          <div class="inspiration_heading">
+            <h2>Inspiration</h2>
+            <hr class="rounded" />
+            <p class="inspiration_text">
+              "A successful economic development strategy must focus on
+              improving the skills of the area's workforce, reducing the cost of
+              doing business and making available the resources business needs
+              to compete and thrive in today's global economy" <br />
+              <br />
+              "Rod Blagojevich"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--pure grid for explaining the topic-->
+      <div id="section2" class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">Economic Freedom Index</h3>
+          <p class="TopicExplanation">
+            The map shows the index scores of each country around the world. The
+            index scores were summarized with different metrics in the year of
+            <b>2019</b> with the purpose of knowing which country shows the best
+            economy and the worst economy, As people would like to stay in
+            certain country due to the awareness of the economic activity, it
+            would be important for them to see the economic rate in general to
+            ensure they can make good choices after taking the brief view of
+            this visualization into account
+          </p>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <!-- pure grid 3 for the map-->
+      <div class="pure-g">
+        <!--the whole column visualizes the map-->
+        <div class="pure-u-4">
+          <div class="pure-u-2-4">
+            <div id="vis1" class="map_container"></div>
+          </div>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <div id="vis1" />
+      <script>
+        const map = {
+          $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+          title: "Global Economic Freedom Index In 2019",
+          width: 600,
+          height: 400,
+          params: [
+            {
+              name: "center_to",
+              value: [0, 0],
+              bind: {
+                input: "select",
+                options: [
+                  [0, 0],
+                  [9, 53],
+                  [126.91, 32.93],
+                  [34, 8],
+                  [-100.16, 48.16],
+                  [-63.37, -22.56],
+                  [133, -25],
+                ],
+                labels: [
+                  "Show All",
+                  "Europe",
+                  "Asia",
+                  "Africa",
+                  "North America",
+                  "South America",
+                  "Australia",
+                ],
+                name: "Map Centre: ",
+              },
+            },
+            {
+              name: "zoom_level",
+              value: 100,
+              bind: {
+                input: "range",
+                min: 100,
+                max: 400,
+                step: 10,
+                name: "Zoom: ",
+              },
+            },
+          ],
+          projection: {
+            type: "equalEarth",
+            center: { expr: "center_to" },
+            scale: { expr: "zoom_level" },
+          },
+          layer: [
+            {
+              data: {
+                url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/ne_110m_wgs84_bounding_box.json",
+                format: {
+                  type: "topojson",
+                  feature: "ne_110m_wgs84_bounding_box",
+                },
+              },
+              mark: { type: "geoshape", fill: "lightblue", stroke: null },
+            },
+            {
+              data: {
+                url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/ne_110m_graticules_30.json",
+                format: { type: "topojson", feature: "ne_110m_graticules_30" },
+              },
+              mark: { type: "geoshape", fill: null, stroke: "white" },
+            },
+            {
+              data: {
+                url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/ne_110m.json",
+                format: {
+                  type: "topojson",
+                  feature: "ne_110m_admin_0_countries",
+                },
+              },
+              layer: [
+                {
+                  transform: [
+                    {
+                      calculate:
+                        "'Data is not available in' + datum.properties.NAME",
+                      as: "note",
+                    },
+                  ],
+                  mark: {
+                    type: "geoshape",
+                    fill: "lightgray",
+                    stroke: "white",
+                  },
+                  encoding: { tooltip: { field: "note" } },
+                },
+                {
+                  transform: [
+                    {
+                      lookup: "properties.NAME",
+                      from: {
+                        data: {
+                          url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/economic_freedom_index2019.csv",
+                        },
+                        key: "Country",
+                        fields: ["2019Score"],
+                      },
+                    },
+                  ],
+                  mark: { type: "geoshape", stroke: "white" },
+                  encoding: {
+                    color: {
+                      field: "2019Score",
+                      type: "quantitative",
+                      title: "Index Score",
+                    },
+                    tooltip: [
+                      {
+                        field: "properties.NAME",
+                        type: "nominal",
+                        title: "Country",
+                      },
+                      {
+                        field: "2019Score",
+                        type: "quantitative",
+                        title: "Index Score",
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+          config: {},
+        };
+        vegaEmbed("#vis1", map, { actions: false })
+          .then(console.log)
+          .catch(console.warn);
+      </script>
+
+      <!--pure grid for explaining the topic-->
+      <div id="section3" class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">Business and Labor Freedom</h3>
+          <p class="TopicExplanation">
+            Business and Labor Freedom are two main characters that
+            businessperson always looks at before expanding the business into
+            large market accross multiple countries. Assessing how better a
+            country is with respect to the business and the labor market, the
+            solution is to view the interactive bubble chart as the main
+            instrument. As they choose a certain region, they can look at the
+            tooltip and decide the best country with better rate of labor and
+            business. Overall, it can be seen that
+            <b class="asian_pacific"> North Korea </b>
+            shows <b class="poor">poor performance</b> in
+            <strong> business and labor freedom</strong> as opposed to
+            <b class="asian_pacific">Hong Kong</b> where has
+            <b class="good">excellent performance</b> in
+            <strong>business and labor freedom</strong>. The most interesting
+            fact is <b class="sub_saharan_africa">Somalia</b> has
+            <b class="poor">zero performance </b> of the labor freedom. Not
+            recommend to stay there if you want to seek labors.
+          </p>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <!--pure grid for visualizing the bubble chart and the text-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis2" class="bubble_container"></div>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <div id="vis2" />
+      <script>
+        const bubble = {
+          $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+          width: 500,
+          height: 400,
+          title: "Business and Labor Freedom in 2019",
+          data: {
+            url: "https://mgow0002.github.io/FIT3179/economic_freedom_index2019.csv",
+          },
+          params: [
+            {
+              name: "Region_Selection",
+              bind: {
+                input: "select",
+                options: [
+                  null,
+                  "Asia-Pacific",
+                  "Middle East and North Africa",
+                  "Sub-Saharan Africa",
+                  "Europe",
+                  "Americas",
+                ],
+                labels: [
+                  "Show All",
+                  "Asia-Pacific",
+                  "Middle East and North Africa",
+                  "Sub-Saharan Africa",
+                  "Europe",
+                  "Americas",
+                ],
+                name: "Region Selection",
+              },
+            },
+            {
+              name: "Population_Above",
+              value: 0,
+              bind: {
+                input: "range",
+                min: 0,
+                max: 100000000,
+                name: "Minimum Population: ",
+              },
+            },
+          ],
+          transform: [
+            {
+              filter:
+                "Region_Selection == null || datum.Region == Region_Selection",
+            },
+            { filter: "datum.Population > Population_Above" },
+          ],
+          encoding: {
+            x: {
+              field: "LaborFreedom",
+              type: "quantitative",
+              title: "Labor Freedom (%)",
+              axis: { tickCount: 4 },
+            },
+            y: {
+              field: "BusinessFreedom",
+              type: "quantitative",
+              title: "Business Freedom (%)",
+              axis: { tickCount: 4 },
+            },
+          },
+          layer: [
+            {
+              mark: "circle",
+              encoding: {
+                size: {
+                  field: "Population",
+                  type: "quantitative",
+                  scale: {
+                    type: "threshold",
+                    domain: [1000000, 10000000, 50000000, 100000000, 500000000],
+                    range: [10, 50, 150, 200, 300, 400],
+                  },
+                },
+                color: {
+                  field: "Region",
+                  type: "nominal",
+                  scale: {
+                    domain: [
+                      "Asia-Pacific",
+                      "Middle East and North Africa",
+                      "Sub-Saharan Africa",
+                      "Europe",
+                      "Americas",
+                    ],
+                    range: [
+                      "#c51b8a",
+                      "#fec44f",
+                      "#d95f0e",
+                      "#31a354",
+                      "#8856a7",
+                    ],
+                  },
+                },
+                tooltip: [
+                  { field: "Country", type: "nominal" },
+                  { field: "Region", type: "nominal" },
+                  { field: "Population", type: "quantitative", format: "," },
+                  {
+                    field: "BusinessFreedom",
+                    type: "quantitative",
+                    format: ",",
+                    title: "Business Freedom",
+                  },
+                  {
+                    field: "LaborFreedom",
+                    type: "quantitative",
+                    format: ",",
+                    title: "Labor Freedom",
+                  },
+                ],
+              },
+            },
+            {
+              mark: {
+                type: "text",
+                align: "left",
+                baseline: "middle",
+                dx: -18,
+                dy: 14,
+                fontSize: 11.5,
+                fontStyle: "italic",
+              },
+              encoding: {
+                text: { field: "Country", type: "nominal" },
+                color: { value: "black" },
+                opacity: {
+                  condition: {
+                    test: "datum['Country'] == 'North Korea' || datum['Country'] == 'Hong Kong' ",
+                    value: 1,
+                  },
+                  value: 0,
+                },
+                tooltip: [
+                  { field: "Country", type: "nominal" },
+                  { field: "Region", type: "nominal" },
+                  { field: "Population", type: "quantitative", format: "," },
+                  {
+                    field: "BusinessFreedom",
+                    type: "quantitative",
+                    format: ",",
+                    title: "Business Freedom",
+                  },
+                  {
+                    field: "LaborFreedom",
+                    type: "quantitative",
+                    format: ",",
+                    title: "Labor Freedom",
+                  },
+                ],
+              },
+            },
+          ],
+        };
+
+        vegaEmbed("#vis2", bubble, { actions: false })
+          .then(console.log)
+          .catch(console.warn);
+      </script>
+
+      <!--pure grid for explaining the topic-->
+      <div id="section4" class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">GDP Vs Unemployment Trend</h3>
+          <p class="TopicExplanation">
+            Talking about the trend of two subjects (<b>GDP</b> and
+            <b>Unemployment</b>), there is a great importance of knowing the
+            relationship between these two which can be supported by Okun's law
+            stating that GDP rate must grow so the reduction of the unemployment
+            can be potentially achieved. To prove this perspective correct,
+            Let's make a <strong>trend comparison</strong> between
+            <b>GDP</b> and <b>Unemployment</b>. In 2019, the
+            <b class="poor">Covid-19</b> occured and has affected the
+            significant number of people around the world and continued doing
+            this inevitably until 2020. There was a slight
+            <b class="poor">decline</b> in 2020 due to the existence of Covid-19
+            which caused great degree of unemployment among a group of society.
+            As time passed by, the situation started to
+            <b class="good">get recovered</b> and the GDP rate increased bit by
+            bit. From 2021 to 2023, the GDP holds the
+            <b class="good">upward</b> trend in general meaning that the
+            unemployment rate will be considerably reduced by no means.
+            Therefore, this concludes the theory made by Oken is true and still
+            produces more <b class="good">positive</b> outcomes.
+          </p>
+        </div>
+      </div>
+      <!--end pure grid-->
+
+      <!-- pure grid for the trend of the line chart-->
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis3" class="line_charts_container"></div>
+        </div>
+      </div>
+      <!-- end pure grid-->
+
+      <div id="vis3" />
+      <script>
+        const line_charts_trend = {
+          $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+          data: {
+            url: "https://raw.githubusercontent.com/mgow0002/FIT3179/main/gdp_and_unemp.csv",
+          },
+          hconcat: [
+            {
+              title: "GDP Rate",
+              width: 300,
+              height: 250,
+              transform: [
+                {
+                  aggregate: [
+                    {
+                      op: "mean",
+                      field: "GDP",
+                      as: "mean_gdp",
+                    },
+                  ],
+                  groupby: ["Year"],
+                },
+              ],
+              encoding: {
+                x: {
+                  field: "Year",
+                  type: "temporal",
+                },
+                y: {
+                  field: "mean_gdp",
+                  type: "quantitative",
+                  title: "Average GDP Per Year",
+                },
+                tooltip: [
+                  {
+                    field: "Year",
+                    type: "temporal",
+                    title: "Year",
+                    timeUnit: "year",
+                  },
+                  {
+                    field: "mean_gdp",
+                    type: "quantitative",
+                    title: "Average GDP",
+                  },
+                ],
+              },
+              layer: [
+                {
+                  mark: {
+                    type: "line",
+                    point: {
+                      filled: false,
+                      fill: "white",
+                    },
+                  },
+                },
+                {
+                  mark: {
+                    type: "text",
+                    align: "right",
+                    dx: -8,
+                    dy: -8,
+                    baseline: "middle",
+                    fontStyle: "italic",
+                  },
+                },
+              ],
+            },
+            {
+              title: "Unemployment Rate",
+              width: 300,
+              height: 250,
+              transform: [
+                {
+                  aggregate: [
+                    {
+                      op: "mean",
+                      field: "Unemployment",
+                      as: "mean_unemployment",
+                    },
+                  ],
+                  groupby: ["Year"],
+                },
+              ],
+              mark: {
+                type: "line",
+                point: {
+                  filled: false,
+                  fill: "white",
+                },
+              },
+              encoding: {
+                x: {
+                  field: "Year",
+                  type: "temporal",
+                },
+                y: {
+                  field: "mean_unemployment",
+                  type: "quantitative",
+                  title: "Average Unemployment Per Year",
+                },
+                tooltip: [
+                  {
+                    field: "Year",
+                    type: "temporal",
+                    title: "Year",
+                    timeUnit: "year",
+                  },
+                  {
+                    field: "mean_unemployment",
+                    type: "quantitative",
+                    title: "Average Unemployment",
+                  },
+                ],
+              },
+            },
+          ],
+        };
+        vegaEmbed("#vis3", line_charts_trend, { actions: false })
+          .then(console.log)
+          .catch(console.warn);
+      </script>
+
+      <div id="section5" class="pure-g">
+        <div class="pure-u-1-1">
+          <h3 class="Topic">Conclusion</h3>
+          <p class="TopicExplanation">
+            The two pieces of data has been taken from the
+            <strong> Kaggle </strong> and designed by two primary authors. Two
+            data mainly discusses <b>"Global Economic Index in 2019"</b> and
+            <b>"Trend for Unemployment and GDP"</b>. Give credits to these two
+            authors, namely Mohamed Yosef and Lewis Duncan. The website of the
+            visualization is <b> designed by Michael Gowanto </b>. To find out
+            more where I find the data, you can access through this link:
+            <a
+              href="https://www.kaggle.com/datasets/lewisduncan93/the-economic-freedom-index"
+              >Global Economic Index</a
+            >
+            and
+            <a
+              href="https://www.kaggle.com/datasets/mohamedyosef101/economic-growth-and-unemployment-rate"
+              >GDP and Unemployment</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
